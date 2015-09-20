@@ -9,9 +9,7 @@ collection add.
 var db = new Firehose(firebaseUrl);
 
 db.increment('simple/counter');
-db.incrementCollectionMember('collection', memberQuery, counterProperty);
-
-db.addCollectionMember('collection', {properties: 'values'});
+db.add('collection', {properties: 'values'});
 ```
 
 ## Contributing
