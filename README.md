@@ -6,7 +6,7 @@ collection add.
 ## API
 
 ```js
-var db = new Firehose(firebaseUrl);
+var db = new Firehydrant(firebaseUrl);
 
 db.increment('simple/counter');
 db.add('collection', {properties: 'values'});
