@@ -5,12 +5,21 @@ var Firehydrant = function(firebaseUrl) {
 
 Firehydrant.prototype.increment = function(counter) {
   var counterRef = this.fb.child(counter);
-  return counterRef.transaction(function(value) {
+  counterRef.transaction(function(value) {
     return (value || 0) + 1;
   });
 };
 
 Firehydrant.prototype.add = function(collection, object) {
   var addRef = this.fb.child(collection).push();
-  return addRef.set(object);
+  addRef.set(object);
+};
+
+Firehydrant.prototype.all = function(collection, callback) {
+  var allRef = this.fb.child(collection);
+  allRef.on('child_added', function(snapshot) {
+    var item = snapshot.val();
+    item.key = snapshot.key();
+    callback(item);
+  });
 };
